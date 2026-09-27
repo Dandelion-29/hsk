@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💙EMM💙</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Background hiệu ứng trái tim và 3 ảnh cắt nền xoay trôi -->
+    <div class="floating-hearts-container" id="heartContainer"></div>
+    <!-- MÀN HÌNH NHẬP MẬT KHẨU (GIAO DIỆN BÀN PHÍM ĐIỆN THOẠI) -->
+    <div class="password-screen" id="passwordScreen">
+      <div class="content-box password-box">
+        <h2 class="section-title">🔒 Mật Khẩu 🔒</h2>
+        <p class="desc" style="font-size: 15px; margin-bottom: 12px"></p>
+
+        <!-- Ô hiển thị các dấu sao hoặc số đang nhập -->
+        <div class="pass-display" id="passDisplay">_ _ _ _ _ _</div>
+        <p class="pass-error" id="passError"></p>
+
+        <!-- Bàn phím số dạng điện thoại (9 nút số + nút xóa + nút OK) -->
+        <div class="keypad-grid">
+          <button class="key-btn" onclick="pressKey('1')">1</button>
+          <button class="key-btn" onclick="pressKey('2')">2</button>
+          <button class="key-btn" onclick="pressKey('3')">3</button>
+          <button class="key-btn" onclick="pressKey('4')">4</button>
+          <button class="key-btn" onclick="pressKey('5')">5</button>
+          <button class="key-btn" onclick="pressKey('6')">6</button>
+          <button class="key-btn" onclick="pressKey('7')">7</button>
+          <button class="key-btn" onclick="pressKey('8')">8</button>
+          <button class="key-btn" onclick="pressKey('9')">9</button>
+          <button class="key-btn action-key" onclick="clearPass()">⌫</button>
+          <button class="key-btn" onclick="pressKey('0')">0</button>
+          <button class="key-btn action-key confirm-key" onclick="submitPass()">
+            ✓
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- KHUNG ĐIỀU KHIỂN NHẠC NỔI GÓC PHẢI -->
+
+    <!-- PHẦN 1: MỞ ĐẦU -->
+    <section class="page active" id="page-1">
+      <div class="content-box">
+        <h1 class="title">💙 CHÚC MỪNG EM ĐẬU HSK ^w^ 💙</h1>
+        <div class="avatar-container">
+          <img src="ANH/avt.png" alt="Avatar" class="avatar-img" />
+        </div>
+        <p class="subtitle">(๑˃̵ᴗ˂̵)و</p>
+        <p class="desc">Click ĐỂ TÍPPP !! (つ˵•́ω•̀˵)つ💙</p>
+        <button class="next-btn" id="btn-to-2">Next!! ^w^ 🖱️</button>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: KỶ NIỆM (OUR MEMORIES) -->
+    <section class="page" id="page-2">
+      <div class="content-box memories-box">
+        <h2 class="section-title">NHỮNG NỖ LỰC CỦA EM:3 🏅</h2>
+        <div class="polaroid-grid">
+          <div
+            class="polaroid-item"
+            onclick="openModal('ANH/anh2_1.png', 'Bá Sàn HSK MUHEHEHHEHEE')"
+          >
+            <img src="ANH/anh2_1.png" alt="Memory 1" />
+            <div class="polaroid-caption">🐾</div>
+          </div>
+          <div
+            class="polaroid-item"
+            onclick="openModal('ANH/anh2_2.png', 'Yeeuuu của ai dỏi quá dọ ')"
+          >
+            <img src="ANH/anh2_2.png" alt="Memory 2" />
+            <div class="polaroid-caption">🎉</div>
+          </div>
+          <div
+            class="polaroid-item"
+            onclick="openModal('ANH/anh2_3.png', ' Gụttt Chóppppp Emmm')"
+          >
+            <img src="ANH/anh2_3.png" alt="Memory 3" />
+            <div class="polaroid-caption">🎀</div>
+          </div>
+          <div
+            class="polaroid-item"
+            onclick="openModal('ANH/anh2_4.png', ' Cố Gắng Nhiều Rùiiii ')"
+          >
+            <img src="ANH/anh2_4.png" alt="Memory 4" />
+            <div class="polaroid-caption">🎇</div>
+          </div>
+          <div
+            class="polaroid-item"
+            onclick="openModal('ANH/anh2_5.png', ' NÀY KHÔNG TOP ĐIỂM HSK THÌ PHÍ !!!! ')"
+          >
+            <img src="ANH/anh2_5.png" alt="Memory 5" />
+            <div class="polaroid-caption">🎊</div>
+          </div>
+          <div
+            class="polaroid-item"
+            onclick="openModal('ANH/anh2_6.png', ' XỨNG ĐÁNG 36 HŨY CHƯỠNG ✨✨')"
+          >
+            <img src="ANH/anh2_6.png" alt="Memory 6" />
+            <div class="polaroid-caption">🤩</div>
+          </div>
+        </div>
+        <button class="next-btn" id="btn-to-3">Next →</button>
+      </div>
+    </section>
+
+    <!-- MODAL XEM CHI TIẾT ẢNH -->
+    <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img id="modalImg" src="" alt="Detail" />
+        <div class="message-frame" id="modalMsg">Bá Sàn HSK MUHEHEHHEHEE</div>
+      </div>
+    </div>
+
+    <!-- PHẦN 3: VIDEO KỶ NIỆM (MP4) -->
+    <section class="page" id="page-3">
+      <div class="content-box">
+        <h2 class="section-title">🎶 Muzik 🎶</h2>
+        <div class="music-card">
+          <!-- Khung Video MP4 -->
+          <div class="video-container-mp4">
+            <video
+              id="memoryVideo"
+              src="ANH/video_ky_niem.mp4"
+              controls
+              loop
+              playsinline
+            ></video>
+          </div>
+          <div class="song-info" style="margin-top: 15px">
+            <h3>Nhất Sinh Đích Ái x Yêu Như Thói Quen</h3>
+            <p>✨Bấm để nghe✨</p>
+          </div>
+          <p class="quote-text">" 每次听到这首歌，我都想起你 "</p>
+        </div>
+        <button class="next-btn" id="btn-to-4">Next →</button>
+      </div>
+    </section>
+
+    <!-- PHẦN 4: BỨC THƯ BÍ MẬT -->
+    <section class="page" id="page-4">
+      <div class="content-box letter-teaser">
+        <div class="envelope-icon" id="envelope-click">💌</div>
+        <h2 class="section-title">ĐÔI LỜI GỬI EMMM</h2>
+        <button class="next-btn" id="btn-to-5">Next →</button>
+      </div>
+    </section>
+
+    <!-- PHẦN 5: NỘI DUNG LỜI CHÚC -->
+    <section class="page" id="page-5">
+      <div class="content-box">
+        <h2 class="section-title">💌 Chúc Mừng Emmm</h2>
+        <div class="heart-row">💙 💙 💙</div>
+        <div class="letter-paper">
+          <p>Halo Halo</p>
+          <p>
+            Anh không biết từ bao giờ mà anh cảm thấy em là 1 phần cuộc sống của
+            anh nhiều như hiện tại, anh chỉ biết từ 1 lúc nào đó, anh đã luôn
+            muốn ở cạnh em mọi lúc, liệu em có thấy anh quan trọng trong cuộc
+            sống của em không nhỉ? Còn với anh, yêu quan trọng với anh nhiều
+            nhiều lắm!!!! Và tất nhiên là kể cả những điều quan trọng với em
+            nựaaaaa
+          </p>
+          <p>
+            Anh rất thích những lúc em kể anh nghe về ngày của em, về nỗ lực của
+            em, về những câu chuyện xung quanh em nữa. Mỗi lúc như vậy, anh cảm
+            thấy được hiểu em nhiều hơn, ngắm nhìn em nhiều hơn bằng cảm xúc và
+            bằng tim anh chứ không chỉ bằng mắt. Cho dù anh không được đồng hành
+            trong cuộc hành trình của em với hsk ngay từ đầu, nhưng anh hiểu rất
+            rõ rằng em đã phải nỗ lực và đánh đổi nhiều lắm lắm, thương em
+            nhiều😭
+          </p>
+          <p>
+            Nếu có 1 ai đó phủ nhận công sức của em, thì anh chắc chắn sẽ nhét
+            10001 thứ anh ghét nhất vào mồm người đó, vì anh biết yeeuu của anhh
+            đã nỗ lực nhiều lắm ời😭😭.
+          </p>
+          <p>
+            Anh yêu em nhiều lắm 😭 anh muốn được vuii cùng em mỗi khi có thành
+            quả, được buồn cùng em mỗi khi có chuyện không hay, anh mong bản
+            thân anh luôn được ở cạnh em mỗi khi em cần, vậy nên cho dù kết quả
+            có như thế nào, chia sẻ với anh nhé ạ🎀
+          </p>
+          <p>
+            Và cho dù khoảng cách của 2 ta có là cả ngàn cây số, hay thậm chí là
+            cả 1 cuộc đời ngắn ngủi của anh đi nữa, thì tình cảm trong anh sẽ
+            luôn ở bên cạnh em, hãy để anh được đồng hành cùng em nhéee🥺
+          </p>
+          <p>
+            Có lẽ cách thể hiện tình cảm của anh quá đỗi khác biệt, có thể em sẽ
+            trách anh chưa từng yêu em như cách em yêu anh, nhưng anh cũng yêu
+            em nhiều nhiều lắm đấy ạ🥺🥺 Chỉ là anh muốn được đồng hành nhẹ
+            nhàng với em mà thôi, em là đóa hoa cẩm tú đẹp nhất trong lòng anh.
+            Cũng bởi vì anh nợ em rất nhiều lời xin lỗi😭😭😭😭 Nhưng anh sẽ
+            không nợ bất kì lời cảm ơn nào cho những nỗ lực của em đâu✨✨Cảm ơn
+            em vì đã cố gắng nhiều đến vậy nhé
+          </p>
+          <p>
+            Emmm giỏiii lắmm lắm ớ :33 yêu thương yêu của anhh thiệt thiệt nhiều
+            nhiều nhéeeeeee 🌸
+          </p>
+          <p style="text-align: center">
+            <strong>祝愿您身体健康，一路顺风，人生平安顺遂。</strong>
+          </p>
+        </div>
+        <button class="next-btn" id="btn-to-6">Next →</button>
+      </div>
+    </section>
+
+    <!-- PHẦN 6: HIỂN THỊ ẢNH CẮT NỀN ĐẶC BIỆT -->
+    <section class="page" id="page-6">
+      <div class="content-box">
+        <h2 class="section-title">✨ TRAO HUY CHƯƠNGG ✨</h2>
+        <p class="subtitle" style="font-size: 16px; margin-bottom: 15px">💙</p>
+
+        <div class="final-sticker-container">
+          <img
+            src="ANH/nhan_vat_cuoi.png"
+            alt="Special Sticker"
+            class="final-sticker-img"
+          />
+        </div>
+
+        <p
+          class="desc"
+          style="margin-top: 20px; font-weight: 600; color: #3b628a"
+        >
+          CHÚC MỪNG YÊU NHÓOOOOOOO
+        </p>
+        <button class="next-btn" id="btn-to-1">Quay Lại ⟲</button>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
